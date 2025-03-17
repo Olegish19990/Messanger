@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "ke42gh+eL6A=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Vadym\\Desktop\\messanger\\03_messanger\\MTP\\MTP.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Vadym\\.nuget\\packages\\autofac\\8.2.0\\autofac.8.2.0.nupkg.sha512",
+    "C:\\Users\\Vadym\\.nuget\\packages\\system.diagnostics.diagnosticsource\\8.0.1\\system.diagnostics.diagnosticsource.8.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

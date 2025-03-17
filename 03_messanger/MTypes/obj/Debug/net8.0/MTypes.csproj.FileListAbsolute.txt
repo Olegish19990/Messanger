@@ -1,0 +1,15 @@
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\bin\Debug\net8.0\MTypes.deps.json
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\bin\Debug\net8.0\MTypes.dll
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\bin\Debug\net8.0\MTypes.pdb
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\bin\Debug\net8.0\MTP.dll
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\bin\Debug\net8.0\MTP.pdb
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\obj\Debug\net8.0\MTypes.csproj.AssemblyReference.cache
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\obj\Debug\net8.0\MTypes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\obj\Debug\net8.0\MTypes.AssemblyInfoInputs.cache
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\obj\Debug\net8.0\MTypes.AssemblyInfo.cs
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\obj\Debug\net8.0\MTypes.csproj.CoreCompileInputs.cache
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\obj\Debug\net8.0\MTypes.csproj.Up2Date
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\obj\Debug\net8.0\MTypes.dll
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\obj\Debug\net8.0\refint\MTypes.dll
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\obj\Debug\net8.0\MTypes.pdb
+C:\Users\Vadym\Desktop\messanger\03_messanger\MTypes\obj\Debug\net8.0\ref\MTypes.dll
