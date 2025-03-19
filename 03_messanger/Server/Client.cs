@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using Microsoft.EntityFrameworkCore;
 using MTP;
+using MTP.MTpyes;
 using MTP.PayloadBase;
 using MTypes;
 using Server.Controllers;
@@ -27,7 +28,9 @@ public class Client
         {
             new Route("auth", typeof(AuthController), "Login"),
             new Route("message", typeof(MessageController), "ProcessMessage"),
-            new Route("reg", typeof(RegistrationController), "Registration")
+            new Route("reg", typeof(RegistrationController), "Registration"),
+            new Route("groupCreate", typeof(CreateGroupController), "CreateGroup"),
+            new Route("groupDelete",typeof(DeleteGroupController),"DeleteGroup")
         });
     }
 
@@ -60,6 +63,12 @@ public class Client
                             break;
                         case ProtoMessage<RegistrationRequestPayload> regMsg:
                             router.Handle(regMsg, this, activeConnectionsManager);
+                            break;
+                        case ProtoMessage<GroupCreatePayload> groupCreate:
+                            router.Handle(groupCreate, this, activeConnectionsManager);
+                            break;
+                        case ProtoMessage<GroupDeletePayload> groupDelete:
+                            router.Handle(groupDelete, this, activeConnectionsManager);
                             break;
 
                         default:

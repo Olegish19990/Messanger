@@ -17,3 +17,4 @@ C:\Users\Vadym\Desktop\messanger\03_messanger\TestClient\obj\Debug\net8.0\TestCl
 C:\Users\Vadym\Desktop\messanger\03_messanger\TestClient\obj\Debug\net8.0\TestClient.genruntimeconfig.cache
 C:\Users\Vadym\Desktop\messanger\03_messanger\TestClient\obj\Debug\net8.0\ref\TestClient.dll
 C:\Users\Vadym\Desktop\messanger\03_messanger\TestClient\bin\Debug\net8.0\Autofac.dll
+C:\Users\Vadym\Desktop\messanger\03_messanger\TestClient\obj\Debug\net8.0\TestClient.sourcelink.json

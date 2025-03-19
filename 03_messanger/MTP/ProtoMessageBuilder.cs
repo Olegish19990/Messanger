@@ -3,6 +3,7 @@ using MTP.PayloadBase;
 using MTP;
 using System.Reflection;
 using MTypes;
+using MTP.MTpyes;
 public class ProtoMessageBuilder
 {
 
@@ -52,7 +53,9 @@ public class ProtoMessageBuilder
             "auth" => new AuthRequestPayload(),
             "message" => new MessageRequestPayload(),
             "error" => new ErrorPayload(),
-            "reg" => new RegistrationRequestPayload()
+            "reg" => new RegistrationRequestPayload(),
+            "groupCreate" => new GroupCreatePayload(),
+            "groupDelete" => new GroupDeletePayload()
         };
 
         return paytp;

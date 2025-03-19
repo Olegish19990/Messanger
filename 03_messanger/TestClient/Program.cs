@@ -1,4 +1,5 @@
 ﻿using MTP;
+using MTP.MTpyes;
 using MTP.PayloadBase;
 using MTypes;
 using System;
@@ -53,6 +54,19 @@ try
                 string Regpassword = Console.ReadLine();
                 await SendDynamicMessage(typeof(RegistrationRequestPayload), "reg", new object[] { Reglogin, Regpassword }, netStream);
                 break;
+            case 4:
+                Console.WriteLine("Group Title, Group Type (private_room, public_room");
+                string groupTitle = Console.ReadLine();
+                string groupType = Console.ReadLine();
+                await SendDynamicMessage(typeof(GroupCreatePayload), "groupCreate", new object[] { groupTitle, groupType },netStream);
+                break;
+
+            case 5:
+                Console.WriteLine("Group id");
+                int groupForDelete = int.Parse(Console.ReadLine());
+                await SendDynamicMessage(typeof(GroupDeletePayload), "groupDelete", new object[] { groupForDelete }, netStream);
+                break;
+
         }
     }
 }

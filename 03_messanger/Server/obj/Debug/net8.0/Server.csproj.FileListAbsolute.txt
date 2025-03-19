@@ -132,3 +132,4 @@ C:\Users\Vadym\Desktop\messanger\03_messanger\Server\obj\Debug\net8.0\Server.pdb
 C:\Users\Vadym\Desktop\messanger\03_messanger\Server\obj\Debug\net8.0\Server.genruntimeconfig.cache
 C:\Users\Vadym\Desktop\messanger\03_messanger\Server\obj\Debug\net8.0\ref\Server.dll
 C:\Users\Vadym\Desktop\messanger\03_messanger\Server\bin\Debug\net8.0\Autofac.dll
+C:\Users\Vadym\Desktop\messanger\03_messanger\Server\obj\Debug\net8.0\Server.sourcelink.json
