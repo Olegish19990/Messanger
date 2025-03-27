@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Server.ServerDataInfo;
 namespace Server.ServerDataInfo
 {
     public class ActiveConnectionsManager
@@ -15,7 +15,8 @@ namespace Server.ServerDataInfo
 
         public ActiveConnectionsManager(List<Room> rooms)
         {
-           
+            
+
             groupsOnline = new GroupsOnline(rooms);
             clientsOnline = new ClientsOnline();
         }

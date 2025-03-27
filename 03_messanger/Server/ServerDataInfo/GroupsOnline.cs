@@ -17,19 +17,19 @@ namespace Server.ServerDataInfo
         }
         public GroupsOnline(List<Room> rooms)
         {
-            foreach(var item in rooms)
+            foreach (var item in rooms)
             {
                 Group group = new Group();
                 group.room = item;
                 groups.Add(group);
                 Console.WriteLine($"Group connected: Id: {group.room.Id}\nTitle: {group.room.Title}");
-                foreach(User user in group.room.Users)
+                foreach (User user in group.room.Users)
                 {
                     Console.WriteLine($"{user.Login}\n{user.Password}");
                 }
             }
 
-          
+
         }
         public void AddGroup(Group group)
         {

@@ -12,7 +12,7 @@ namespace Server.ServerDataInfo
 {
     public class Group
     {
-     
+
         public Room room { get; set; }
 
         public List<Client> clients { get; set; } = new List<Client>();

@@ -10,7 +10,7 @@ namespace Server.ErrorHandling;
         InvalidRequest = 400,
         Conflict = 409,
         AuthorizedError = 410,
-}
+    }
 
     public class ErrorResponse
     {

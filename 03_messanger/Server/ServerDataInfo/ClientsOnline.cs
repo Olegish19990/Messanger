@@ -13,7 +13,7 @@ namespace Server
 
         public ClientsOnline() { }
 
-        public ClientsOnline (List<Client> clients)
+        public ClientsOnline(List<Client> clients)
         {
             Clients = clients;
         }

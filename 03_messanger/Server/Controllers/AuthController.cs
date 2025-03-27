@@ -6,6 +6,7 @@ using MTypes;
 using Server.ErrorHandling;
 using Server.Models;
 using Server.ServerDataInfo;
+using Server.ServerSuccessResponce;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -20,23 +21,26 @@ internal class AuthController
         AuthRequestPayload? payload = pm.GetPayload() as AuthRequestPayload;
         if (payload != null)
         {
-            using (Db db = new Db()) {
-                var unauthUser = db.Users.Where(u => u.Login == payload.Login).Include(r=>r.Rooms).FirstOrDefault();
-                if(unauthUser is not null && unauthUser.Password == payload.Password)
+            using (Db db = new Db())
+            {
+                var unauthUser = db.Users.Where(u => u.Login == payload.Login).Include(r => r.Rooms).FirstOrDefault();
+                if (unauthUser is not null && unauthUser.Password == payload.Password)
                 {
                     client.user = unauthUser;
 
                     string connectionsMessage = ConnectClientToGroups(client, activeConnectionsManager);
 
-                    SendConnectionsMessage(connectionsMessage,client);    
-                    
+                    SuccessSender.Send(client, "Success authorization");
+
+                    SendConnectionsMessage(connectionsMessage, client);
+
                 }
                 else
                 {
                     ErrorSender.SendError(client, ErrorCode.AuthorizedError);
                 }
-             }
-            
+            }
+
         }
     }
 
@@ -59,7 +63,7 @@ internal class AuthController
 
     }
 
-    //TODO . Create a logic for send message from DB for chats.
+    //TODO . Create a logic for send chats to user.
     private void SendConnectionsMessage(string connectionsMessage, Client client)
     {
         var messagePayload = new MessageRequestPayload(
@@ -75,7 +79,7 @@ internal class AuthController
         client.ProtoMessageSend(message);
     }
 
-  
+
 
 
 }

@@ -8,20 +8,15 @@ using System.Threading.Tasks;
 
 namespace MTP.MTpyes
 {
-    public class GroupCreatePayload : JsonPayload
+    public class SuccessPayload : JsonPayload
     {
+        public string SuccessText { get; set; }
 
-        public List<int> UsersId { get; set; } 
-        public string Title { get; set; }
-        public string roomType { get; set; }
-
-        public GroupCreatePayload(string title, string roomType, List<int> usersId)
+        public SuccessPayload(string text)
         {
-            this.roomType = roomType;
-            UsersId = usersId;
-            Title = title;
+            SuccessText = text;
         }
-        public GroupCreatePayload() { }
+        public SuccessPayload() { }
         public override string GetJson()
         {
             return JsonSerializer.Serialize(this);

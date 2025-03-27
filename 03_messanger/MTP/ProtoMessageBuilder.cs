@@ -55,7 +55,9 @@ public class ProtoMessageBuilder
             "error" => new ErrorPayload(),
             "reg" => new RegistrationRequestPayload(),
             "groupCreate" => new GroupCreatePayload(),
-            "groupDelete" => new GroupDeletePayload()
+            "groupDelete" => new GroupDeletePayload(),
+            "successResp" => new SuccessPayload(),
+            "joinGroup" => new JoinToGroupPayload()
         };
 
         return paytp;

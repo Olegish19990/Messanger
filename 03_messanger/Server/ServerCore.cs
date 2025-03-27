@@ -14,20 +14,23 @@ internal class ServerCore
     private int port;
     private TcpListener listener;
     private List<Client> clients = new List<Client>();
-    
+
     ActiveConnectionsManager connectionsManager { get; set; }
-    Db db = new Db();
+    // Db Db = new Db();
     public ServerCore(string host = "127.0.0.1", int port = 5500)
     {
         this.host = host;
         this.port = port;
 
         listener = new TcpListener(IPAddress.Parse(host), port);
+        using (Db db = new Db())
+        {
 
-        var rooms = db.Rooms.Include(u => u.Users).ToList();
+            var rooms = db.Rooms.Include(u => u.Users).ToList();
 
 
-        connectionsManager = new ActiveConnectionsManager(rooms);
+            connectionsManager = new ActiveConnectionsManager(rooms);
+        }
     }
 
     public async Task StartAsync()
@@ -43,21 +46,11 @@ internal class ServerCore
                 Console.WriteLine("Client connected...");
 
                 Client client = new Client(tcpClient, connectionsManager);
-
-                // TODO: Add: client handlers
-              /*  User user = new User()
-                {
-                    Login = "TestUser",
-                    Password = "lawleal"
-                };
-                using(Db db = new Db())
-                {
-                    db.Users.Add(user);
-                    db.SaveChanges();
-                }*/
+            
                 clients.Add(client);
+
                 connectionsManager.AddConectedClient(client);
-                
+
                 _ = Task.Run(() => client.Processing());
             }
         }

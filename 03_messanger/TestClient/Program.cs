@@ -55,10 +55,21 @@ try
                 await SendDynamicMessage(typeof(RegistrationRequestPayload), "reg", new object[] { Reglogin, Regpassword }, netStream);
                 break;
             case 4:
-                Console.WriteLine("Group Title, Group Type (private_room, public_room");
+                List<int> usersId = new List<int>();
+                Console.WriteLine("Group Title");
                 string groupTitle = Console.ReadLine();
                 string groupType = Console.ReadLine();
-                await SendDynamicMessage(typeof(GroupCreatePayload), "groupCreate", new object[] { groupTitle, groupType },netStream);
+                while (true)
+                {
+                    int id = 99;
+                    id = int.Parse(Console.ReadLine());
+                    if(id==0)
+                    {
+                        break;
+                    }
+                    usersId.Add(id);
+                }
+                await SendDynamicMessage(typeof(GroupCreatePayload), "groupCreate", new object[] { groupTitle,groupType,usersId},netStream);
                 break;
 
             case 5:
@@ -115,6 +126,11 @@ async Task ReceiveMessages(NetworkStream netStream)
                     ErrorPayload payloadError = error.GetPayload() as ErrorPayload;
                     Console.WriteLine($"Error: {payloadError.ErrorMessage}");
                     break;
+                case ProtoMessage<SuccessPayload> success:
+                    SuccessPayload successPayload = success.GetPayload() as SuccessPayload;
+                    Console.WriteLine($"Success responce: {successPayload.SuccessText}");
+                    break;
+            
               
     
             }

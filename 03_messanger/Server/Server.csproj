@@ -20,4 +20,8 @@
     <ProjectReference Include="..\MTP\MTP.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

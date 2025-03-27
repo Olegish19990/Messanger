@@ -6,6 +6,7 @@ using MTP.MTpyes;
 using MTP.PayloadBase;
 using MTypes;
 using Server.Controllers;
+using Server.ErrorHandling;
 using Server.Models;
 using Server.Routing;
 using Server.ServerDataInfo;
@@ -18,7 +19,7 @@ public class Client
     private NetworkStream netStream = null!;
     private Router router;
     public User? user = null;
-    private ActiveConnectionsManager activeConnectionsManager {get;set;}
+    private ActiveConnectionsManager activeConnectionsManager { get; set; }
 
     public Client(TcpClient tcpClient, ActiveConnectionsManager activeConnectionsManager)
     {
@@ -30,7 +31,8 @@ public class Client
             new Route("message", typeof(MessageController), "ProcessMessage"),
             new Route("reg", typeof(RegistrationController), "Registration"),
             new Route("groupCreate", typeof(CreateGroupController), "CreateGroup"),
-            new Route("groupDelete",typeof(DeleteGroupController),"DeleteGroup")
+            new Route("groupDelete",typeof(DeleteGroupController),"DeleteGroup"),
+            new Route("joinGroup"),typeof(JoinToGroupController),"JointToGroup"),
         });
     }
 
@@ -83,7 +85,7 @@ public class Client
 
                     break;
                 }
-              
+
 
 
 
@@ -93,12 +95,12 @@ public class Client
         }
         catch (Exception)
         {
-
+            ErrorSender.SendError(this, ErrorCode.InvalidRequest);
             throw;
         }
     }
 
-    public void ProtoMessageSend<T> (ProtoMessage<T> protmessage) where T : IPayload
+    public void ProtoMessageSend<T>(ProtoMessage<T> protmessage) where T : IPayload
     {
         MemoryStream memStream = protmessage.GetStream();
         memStream.CopyTo(netStream);

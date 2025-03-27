@@ -18,10 +18,10 @@ internal class Router
 
 
     public void Handle<T>(ProtoMessage<T> pm, Client client, ActiveConnectionsManager activeConnectionsManager)
-        where T: IPayload
+        where T : IPayload
     {
         Route route = Routes.First(r => r.ActionString == pm.Action);
-        route.Execute<T>(pm,client,activeConnectionsManager);
+        route.Execute<T>(pm, client, activeConnectionsManager);
 
 
     }

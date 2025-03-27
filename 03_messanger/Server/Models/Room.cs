@@ -11,6 +11,8 @@ public partial class Room
 
     public int RoomTypeId { get; set; }
 
+    public int AdminId { get; set; }
+
     public byte Status { get; set; }
 
     public virtual ICollection<Message> Messages { get; set; } = new List<Message>();

@@ -29,8 +29,8 @@ internal class Route
         MethodInfo genericMethod = methodInfo.MakeGenericMethod(typeof(T));
         genericMethod.Invoke(controller, new object[] { pm, client, activeConnectionsManager });
 
-      
-    
+
+
     }
 
 

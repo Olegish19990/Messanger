@@ -8,20 +8,14 @@ using System.Threading.Tasks;
 
 namespace MTP.MTpyes
 {
-    public class GroupCreatePayload : JsonPayload
+    public class JoinToGroupPayload : JsonPayload
     {
 
-        public List<int> UsersId { get; set; } 
-        public string Title { get; set; }
-        public string roomType { get; set; }
+        public int TargetGroupId { get; set; }
 
-        public GroupCreatePayload(string title, string roomType, List<int> usersId)
-        {
-            this.roomType = roomType;
-            UsersId = usersId;
-            Title = title;
-        }
-        public GroupCreatePayload() { }
+
+
+
         public override string GetJson()
         {
             return JsonSerializer.Serialize(this);
@@ -38,5 +32,6 @@ namespace MTP.MTpyes
 
             return memStream;
         }
+
     }
 }

@@ -31,7 +31,7 @@ namespace Server.Controllers
 
                 var targetGroup = activeConnectionsManager.groupsOnline.groups
                     .FirstOrDefault(g => g.room.Id == payload.GroupId);
-       
+
 
                 if (targetGroup is null || !client.user.Rooms.Any(r => r.Id == payload.GroupId))
                 {
@@ -39,7 +39,7 @@ namespace Server.Controllers
                     return;
                 }
 
-                SendMessage(client,targetGroup,payload);
+                SendMessage(client, targetGroup, payload);
 
             }
             else
@@ -48,7 +48,7 @@ namespace Server.Controllers
             }
         }
 
-       
+
 
 
         public void SendMessage(Client client, Group targetGroup, MessageRequestPayload payload)

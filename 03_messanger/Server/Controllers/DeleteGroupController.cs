@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Server.ServerSuccessResponce;
 
 namespace Server.Controllers
 {
@@ -25,10 +26,28 @@ namespace Server.Controllers
 
             using (Db db = new Db())
             {
-                db.Rooms.Where(g => g.Id == payload.Id).ExecuteDelete();
+                var room = db.Rooms.Where(g => g.Id == payload.Id).FirstOrDefault();
+
+                if(room is null)
+                {
+                    ErrorSender.SendError(client, ErrorCode.NotFound);
+                    return;
+                }
+
+                if (room.AdminId != client.user.Id)
+                {
+                    ErrorSender.SendError(client, ErrorCode.Forbidden);
+                    return;
+                }
+
+
+                db.Rooms.Remove(room);
+                var groupForDelete = activeConnectionsManager.groupsOnline.groups.Where(g => g.room.Id == room.Id).FirstOrDefault();
+                activeConnectionsManager.RemoveContectedGroup(groupForDelete);
+                db.SaveChanges();
             }
             Console.WriteLine("group delete");
-
+            SuccessSender.Send(client, "group was deleted");
             Group group = activeConnectionsManager.groupsOnline.groups.Where(g => g.room.Id == payload.Id).FirstOrDefault();
 
             activeConnectionsManager.RemoveContectedGroup(group);

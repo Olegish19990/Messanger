@@ -1,5 +1,4 @@
-﻿using MTP.PayloadBase;
-using MTP;
+﻿using MTP;
 using MTypes;
 using Server.ErrorHandling;
 using Server.ServerDataInfo;
@@ -10,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Server.Models;
+using MTP.PayloadBase;
+using Server.ServerSuccessResponce;
 
 namespace Server.Controllers
 {
@@ -17,7 +18,7 @@ namespace Server.Controllers
     {
         private ActiveConnectionsManager activeConnectionsManager { get; set; }
 
-        public void Registration<T>(ProtoMessage<T> pm,Client client,ActiveConnectionsManager activeConnectionsManager) where T: IPayload
+        public void Registration<T>(ProtoMessage<T> pm, Client client, ActiveConnectionsManager activeConnectionsManager) where T : IPayload
         {
             this.activeConnectionsManager = activeConnectionsManager;
 
@@ -29,21 +30,20 @@ namespace Server.Controllers
                 Password = payload.Password
             };
 
-            using(Db db = new Db())
+            using (Db Db = new Db())
             {
                 try
                 {
-                    db.Users.Add(user);
+                    Db.Users.Add(user);
 
-                    db.SaveChanges();
+                    Db.SaveChanges();
 
-                    Console.WriteLine($"User has succesfulyy created with: \nLogin: {payload.Login} \nPassword: {user.Password} " +
-                        $"\nId: {user.Id}");
+                    SuccessSender.Send(client, "Success registration");
 
                 }
-                catch(Exception ex) 
+                catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    ErrorSender.SendError(client, ErrorCode.InvalidRequest);
                 }
             }
 

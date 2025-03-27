@@ -13,7 +13,6 @@ public partial class Db : DbContext
     public Db(DbContextOptions<Db> options)
         : base(options)
     {
-        
     }
 
     public virtual DbSet<Message> Messages { get; set; }
@@ -32,7 +31,7 @@ public partial class Db : DbContext
     {
         modelBuilder.Entity<Message>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__messages__3213E83FB16AB56A");
+            entity.HasKey(e => e.Id).HasName("PK__messages__3213E83F69D16DD6");
 
             entity.ToTable("messages");
 
@@ -54,22 +53,21 @@ public partial class Db : DbContext
 
             entity.HasOne(d => d.Room).WithMany(p => p.Messages)
                 .HasForeignKey(d => d.RoomId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_messages_room");
 
             entity.HasOne(d => d.User).WithMany(p => p.Messages)
                 .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_messages_user");
         });
 
         modelBuilder.Entity<Room>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__rooms__3213E83F52688B20");
+            entity.HasKey(e => e.Id).HasName("PK__rooms__3213E83F235DDA44");
 
             entity.ToTable("rooms");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.AdminId).HasColumnName("admin_id");
             entity.Property(e => e.RoomTypeId).HasColumnName("room_type_id");
             entity.Property(e => e.Status)
                 .HasDefaultValue((byte)1)
@@ -80,7 +78,6 @@ public partial class Db : DbContext
 
             entity.HasOne(d => d.RoomType).WithMany(p => p.Rooms)
                 .HasForeignKey(d => d.RoomTypeId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_rooms_room_type");
 
             entity.HasMany(d => d.Users).WithMany(p => p.Rooms)
@@ -88,11 +85,9 @@ public partial class Db : DbContext
                     "RoomsUser",
                     r => r.HasOne<User>().WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
                         .HasConstraintName("FK_rooms_users_user"),
                     l => l.HasOne<Room>().WithMany()
                         .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
                         .HasConstraintName("FK_rooms_users_room"),
                     j =>
                     {
@@ -105,15 +100,13 @@ public partial class Db : DbContext
 
         modelBuilder.Entity<RoomType>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__room_typ__3213E83FFE15EC27");
+            entity.HasKey(e => e.Id).HasName("PK__room_typ__3213E83FE1885EB8");
 
             entity.ToTable("room_types");
 
-            entity.HasIndex(e => e.Title, "UQ__room_typ__E52A1BB31E19F030").IsUnique();
+            entity.HasIndex(e => e.Title, "UQ__room_typ__E52A1BB35A860492").IsUnique();
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Title)
                 .HasMaxLength(32)
                 .IsUnicode(false)
@@ -122,11 +115,11 @@ public partial class Db : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__users__3213E83FDB558545");
+            entity.HasKey(e => e.Id).HasName("PK__users__3213E83F66B77FAD");
 
             entity.ToTable("users");
 
-            entity.HasIndex(e => e.Login, "UQ__users__7838F2720D9365A9").IsUnique();
+            entity.HasIndex(e => e.Login, "UQ__users__7838F272244EEB46").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Login)
